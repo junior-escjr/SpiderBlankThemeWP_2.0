@@ -1,0 +1,61 @@
+// Navigation components
+
+// Main navigation
+.main-navigation {
+  @apply hidden md:block;
+}
+
+.main-navigation ul {
+  @apply flex space-x-8 list-none;
+}
+
+.main-navigation a {
+  @apply text-gray-700 font-medium hover:text-blue-600 transition-colors duration-300 relative;
+
+  &::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300;
+  }
+
+  &:hover::after {
+    @apply w-full;
+  }
+}
+
+// Mobile navigation
+.mobile-menu-toggle {
+  @apply hidden bg-none border-none p-2.5 cursor-pointer md:hidden;
+}
+
+.menu-icon {
+  @apply block w-6 h-0.5 bg-gray-900 relative transition-all duration-300;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  @apply content-[''] absolute w-full h-0.5 bg-gray-900 transition-all duration-300;
+}
+
+.menu-icon::before {
+  @apply -top-2;
+}
+
+.menu-icon::after {
+  @apply -bottom-2;
+}
+
+.mobile-menu-toggle[aria-expanded="true"] {
+  .menu-icon {
+    @apply bg-transparent;
+  }
+
+  .menu-icon::before {
+    @apply rotate-45 top-0;
+  }
+
+  .menu-icon::after {
+    @apply -rotate-45 -bottom-0;
+  }
+}
+
+// Mantenho apenas as classes utilizadas nos arquivos PHP

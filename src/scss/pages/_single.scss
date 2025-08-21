@@ -1,0 +1,215 @@
+// Single post page styles
+
+// Post header
+.single-post-header {
+  @apply mb-8 pb-8 border-b border-gray-200;
+}
+
+.single-post-title {
+  @apply text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight;
+}
+
+.single-post-meta {
+  @apply flex flex-wrap items-center gap-6 text-sm text-gray-600;
+}
+
+.single-post-category {
+  @apply inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium;
+}
+
+.single-post-date {
+  @apply flex items-center;
+}
+
+.single-post-date::before {
+  content: '📅';
+  @apply mr-2;
+}
+
+.single-post-author {
+  @apply flex items-center;
+}
+
+.single-post-author::before {
+  content: '✍️';
+  @apply mr-2;
+}
+
+.single-post-reading-time {
+  @apply flex items-center;
+}
+
+.single-post-reading-time::before {
+  content: '⏱️';
+  @apply mr-2;
+}
+
+// Featured image
+.single-post-thumbnail {
+  @apply relative mb-8 rounded-lg overflow-hidden;
+}
+
+.single-post-thumbnail img {
+  @apply w-full h-auto;
+}
+
+// Post content
+.single-post-content {
+  @apply prose prose-lg max-w-none;
+
+  h2 {
+    @apply text-3xl font-bold mt-12 mb-6 text-gray-900;
+  }
+
+  h3 {
+    @apply text-2xl font-bold mt-8 mb-4 text-gray-900;
+  }
+
+  h4 {
+    @apply text-xl font-bold mt-6 mb-3 text-gray-900;
+  }
+
+  p {
+    @apply text-lg text-gray-700 leading-relaxed mb-6;
+  }
+
+  blockquote {
+    @apply border-l-4 border-blue-500 pl-6 py-4 my-8 bg-blue-50 text-blue-900;
+  }
+
+  ul, ol {
+    @apply mb-6 ml-6;
+  }
+
+  li {
+    @apply mb-2 text-gray-700;
+  }
+
+  a {
+    @apply text-blue-600 hover:text-blue-800 underline;
+  }
+
+  img {
+    @apply rounded-lg my-8;
+  }
+
+  .wp-caption {
+    @apply bg-gray-100 p-4 rounded-lg my-8;
+  }
+
+  .wp-caption-text {
+    @apply text-sm text-gray-600 text-center mt-2;
+  }
+}
+
+// Post footer
+.single-post-footer {
+  @apply mt-12 pt-8 border-t border-gray-200;
+}
+
+.post-tags {
+  @apply mb-8;
+}
+
+.post-tags-title {
+  @apply text-lg font-semibold mb-4;
+}
+
+.post-tags-list {
+  @apply flex flex-wrap gap-2;
+}
+
+.post-tag {
+  @apply inline-block bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-200 transition-colors duration-200;
+}
+
+// Author bio
+.author-bio {
+  @apply flex items-start space-x-6 p-6 bg-gray-50 rounded-lg mb-8;
+}
+
+.author-avatar {
+  @apply w-20 h-20 rounded-full flex-shrink-0;
+}
+
+.author-info h3 {
+  @apply text-xl font-bold mb-2;
+}
+
+.author-info p {
+  @apply text-gray-600 mb-4;
+}
+
+.author-social {
+  @apply flex space-x-4;
+}
+
+.author-social a {
+  @apply text-gray-500 hover:text-blue-600 transition-colors duration-200;
+}
+
+// Related posts
+.related-posts {
+  @apply mt-12 pt-8 border-t border-gray-200;
+}
+
+.related-posts-title {
+  @apply text-2xl font-bold mb-6;
+}
+
+.related-posts-grid {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-6;
+}
+
+.related-post {
+  @apply bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300;
+}
+
+.related-post-thumbnail {
+  @apply h-40 overflow-hidden;
+}
+
+.related-post-thumbnail img {
+  @apply w-full h-full object-cover;
+}
+
+.related-post-content {
+  @apply p-4;
+}
+
+.related-post-title {
+  @apply text-lg font-semibold mb-2;
+}
+
+.related-post-title a {
+  @apply text-gray-900 hover:text-blue-600 transition-colors duration-200;
+}
+
+// Post navigation
+.post-navigation {
+  @apply flex justify-between items-center py-8 mt-12 border-t border-gray-200;
+}
+
+.post-nav-item {
+  @apply flex-1;
+}
+
+.post-nav-item.prev {
+  @apply text-left;
+}
+
+.post-nav-item.next {
+  @apply text-right;
+}
+
+.post-nav-link {
+  // @apply group; // Removido porque 'group' é uma utility do Tailwind
+}
+
+.post-nav-title {
+  @apply text-sm text-gray-500 mb-1;
+}
+
+.post-nav-link a {
+  @apply text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors duration-200;
+}

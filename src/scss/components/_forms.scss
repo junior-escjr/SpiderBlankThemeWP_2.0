@@ -1,0 +1,62 @@
+// Form components - apenas classes utilizadas
+
+// Comment form
+.comment-form {
+  @apply space-y-6;
+}
+
+.comment-form-author,
+.comment-form-email,
+.comment-form-url {
+  @apply md:inline-block md:w-1/2 md:pr-2;
+}
+
+.comment-form-comment {
+  @apply w-full;
+}
+
+.comment-form-cookies-consent {
+  @apply flex items-center;
+}
+
+.comment-form-cookies-consent label {
+  @apply ml-2 text-sm text-gray-600;
+}
+
+// Comments list
+.comments-list {
+  @apply space-y-6;
+}
+
+.comment {
+  @apply bg-gray-50 p-6 rounded-lg;
+}
+
+.comment-author {
+  @apply flex items-center mb-4;
+}
+
+.comment-avatar {
+  @apply w-12 h-12 rounded-full mr-4;
+}
+
+.comment-meta {
+  @apply text-sm text-gray-500;
+}
+
+.comment-content {
+  @apply text-gray-700 mb-4;
+}
+
+.comment-reply-link {
+  @apply text-blue-600 hover:text-blue-800 text-sm;
+}
+
+// Search form (utilizada em sidebar.php)
+.search-form {
+  @apply flex;
+}
+
+.search-field {
+  @apply flex-1 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:border-blue-500;
+}

@@ -1,0 +1,138 @@
+// Layout components
+
+// Header
+.site-header {
+  @apply bg-white shadow-lg sticky top-0 z-50;
+}
+
+.site-header .container {
+  @apply flex items-center justify-between py-5;
+}
+
+// Main content area
+.site-main {
+  @apply min-h-[calc(100vh-200px)] py-10 lg:py-16;
+}
+
+// Sidebar layout
+.site-layout {
+  @apply grid grid-cols-1 lg:grid-cols-4 gap-8;
+}
+
+.site-layout.has-sidebar {
+  .site-content {
+    @apply lg:col-span-3;
+  }
+
+  .site-sidebar {
+    @apply lg:col-span-1;
+  }
+}
+
+// Footer
+.site-footer {
+  @apply bg-gray-900 text-white py-10 mt-16;
+}
+
+.site-footer .container {
+  @apply text-center;
+}
+
+// Grid layouts
+.posts-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+}
+
+.posts-list {
+  @apply space-y-8;
+}
+
+// Content wrapper
+.site-content {
+  @apply bg-white p-6 lg:p-8 rounded-lg shadow-lg;
+}
+
+// Entry wrapper
+.entry {
+  @apply mb-8;
+}
+
+.entry-header {
+  @apply mb-6;
+}
+
+.entry-title {
+  @apply text-3xl lg:text-4xl font-bold text-gray-900 mb-4;
+}
+
+.entry-meta {
+  @apply flex flex-wrap gap-4 text-sm text-gray-600 mb-6 pb-6 border-b border-gray-200;
+}
+
+.entry-content {
+  @apply text-lg text-gray-600 leading-relaxed prose prose-lg max-w-none;
+}
+
+.entry-footer {
+  @apply pt-6 border-t border-gray-200;
+}
+
+// Comments area
+.comments-area {
+  @apply mt-12 pt-8 border-t border-gray-200;
+}
+
+.comment-list {
+  @apply space-y-6;
+}
+
+.comment {
+  @apply bg-gray-50 p-6 rounded-lg;
+}
+
+.comment-reply-title {
+  @apply text-xl font-bold mb-4;
+}
+
+// Widgets area
+.widget-area {
+  @apply space-y-6;
+}
+
+.widget {
+  @apply bg-gray-50 p-5 rounded-lg;
+}
+
+.widget-title {
+  @apply text-xl font-bold mb-4;
+}
+
+// Footer widgets
+.footer-widgets {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-8 mb-8;
+}
+
+.footer-column {
+  @apply p-5 bg-white bg-opacity-10 rounded-lg;
+}
+
+.site-info {
+  @apply text-center;
+}
+
+.site-info p {
+  @apply text-sm m-0;
+}
+
+// Archive and category pages
+.archive-header {
+  @apply text-center mb-12;
+}
+
+.archive-title {
+  @apply text-4xl font-bold mb-4;
+}
+
+.archive-description {
+  @apply text-xl text-gray-600 max-w-3xl mx-auto;
+}

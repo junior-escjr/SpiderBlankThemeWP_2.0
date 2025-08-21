@@ -1,0 +1,153 @@
+// Archive page styles
+
+// Archive header
+.archive-header {
+  @apply text-center mb-12 py-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white;
+}
+
+.archive-title {
+  @apply text-4xl lg:text-5xl font-bold mb-4;
+}
+
+.archive-description {
+  @apply text-xl text-gray-100 max-w-3xl mx-auto;
+}
+
+// Category archive
+.category-archive {
+  .archive-header {
+    @apply bg-gradient-to-r from-green-600 to-green-800;
+  }
+}
+
+// Tag archive
+.tag-archive {
+  .archive-header {
+    @apply bg-gradient-to-r from-purple-600 to-purple-800;
+  }
+}
+
+// Author archive
+.author-archive {
+  .archive-header {
+    @apply bg-gradient-to-r from-orange-600 to-orange-800;
+  }
+}
+
+.author-info {
+  @apply flex items-center space-x-6 p-8 bg-gray-50 rounded-lg mb-12;
+}
+
+.author-avatar {
+  @apply w-24 h-24 rounded-full;
+}
+
+.author-details h3 {
+  @apply text-2xl font-bold mb-2;
+}
+
+.author-details p {
+  @apply text-gray-600 mb-4;
+}
+
+.author-stats {
+  @apply flex space-x-6 text-sm text-gray-500;
+}
+
+// Date archive
+.date-archive {
+  .archive-header {
+    @apply bg-gradient-to-r from-red-600 to-red-800;
+  }
+}
+
+// Archive content
+.archive-content {
+  @apply mb-16;
+}
+
+.archive-posts {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+}
+
+// Archive pagination
+.archive-pagination {
+  @apply mt-16;
+}
+
+.pagination {
+  @apply flex justify-center;
+}
+
+.page-numbers {
+  @apply inline-flex items-center justify-center w-10 h-10 mx-1 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors duration-200;
+}
+
+.page-numbers.current {
+  @apply bg-blue-600 border-blue-600 text-white;
+}
+
+.page-numbers.prev,
+.page-numbers.next {
+  @apply w-auto px-3;
+}
+
+// Archive filters
+.archive-filters {
+  @apply mb-8 p-6 bg-gray-50 rounded-lg;
+}
+
+.archive-filter {
+  @apply flex flex-wrap gap-4 items-center;
+}
+
+.archive-filter label {
+  @apply text-sm font-medium text-gray-700 mr-2;
+}
+
+.archive-filter select {
+  @apply px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+}
+
+// Archive sorting
+.archive-sorting {
+  @apply flex justify-between items-center mb-8;
+}
+
+.sort-options {
+  @apply flex items-center space-x-4;
+}
+
+.sort-label {
+  @apply text-sm text-gray-600;
+}
+
+.sort-select {
+  @apply px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+}
+
+// Archive results info
+.archive-results {
+  @apply mb-8 text-sm text-gray-600;
+}
+
+.archive-result-count {
+  @apply font-medium;
+}
+
+// Archive empty state
+.archive-empty {
+  @apply text-center py-16;
+}
+
+.archive-empty-title {
+  @apply text-3xl font-bold text-gray-900 mb-4;
+}
+
+.archive-empty-message {
+  @apply text-xl text-gray-600 mb-8;
+}
+
+.archive-empty-search {
+  @apply max-w-md mx-auto;
+}

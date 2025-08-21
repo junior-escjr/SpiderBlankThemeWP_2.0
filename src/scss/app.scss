@@ -1,0 +1,150 @@
+/*
+Theme Name: Spider Theme
+Description: Um tema WordPress moderno com Tailwind CSS e estrutura organizada
+Author: Seu Nome
+Version: 1.0.0
+Text Domain: spider-theme
+*/
+
+// Imports using @use (must be at the top)
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'components/base' as *;
+@use 'components/layout' as *;
+@use 'components/navigation' as *;
+@use 'components/posts' as *;
+@use 'components/widgets' as *;
+@use 'components/forms' as *;
+@use 'pages/home' as *;
+@use 'pages/single' as *;
+@use 'pages/page' as *;
+@use 'pages/archive' as *;
+@use 'utilities/responsive' as *;
+@use 'utilities/animations' as *;
+@use 'utilities/print' as *;
+@use 'theme/theme' as *;
+
+// Tailwind CSS
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Custom styles usando @apply do Tailwind
+@layer components {
+  // Layout
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  // Header
+  .site-header {
+    @apply bg-white shadow-lg sticky top-0 z-50;
+  }
+
+  .site-header .container {
+    @apply flex items-center justify-between py-5;
+  }
+
+  .site-title {
+    @apply text-xl lg:text-3xl font-bold;
+  }
+
+  .site-title a {
+    @apply text-gray-900 hover:text-blue-600 transition-colors duration-300;
+  }
+
+  // Navigation
+  .main-navigation ul {
+    @apply flex space-x-8 list-none;
+  }
+
+  .main-navigation a {
+    @apply text-gray-700 font-medium hover:text-blue-600 transition-colors duration-300;
+  }
+
+  // Main content
+  .site-main {
+    @apply min-h-[calc(100vh-200px)] py-10 lg:py-16;
+  }
+
+  .site-content {
+    @apply bg-white p-6 lg:p-8 rounded-lg shadow-lg;
+  }
+
+  // Posts
+  .entry-title {
+    @apply text-3xl lg:text-4xl font-bold text-gray-900 mb-4;
+  }
+
+  .entry-content {
+    @apply text-lg text-gray-600 leading-relaxed;
+  }
+
+  // Footer
+  .site-footer {
+    @apply bg-gray-900 text-white py-10 mt-16;
+  }
+
+  .site-footer .container {
+    @apply text-center;
+  }
+
+  .site-footer p {
+    @apply text-sm m-0;
+  }
+
+  // Mobile menu toggle
+  .mobile-menu-toggle {
+    @apply hidden bg-none border-none p-2.5 cursor-pointer md:hidden;
+  }
+
+  .menu-icon {
+    @apply block w-6 h-0.5 bg-gray-900 relative;
+  }
+
+  .menu-icon::before,
+  .menu-icon::after {
+    @apply content-[''] absolute w-full h-0.5 bg-gray-900 transition-all duration-300;
+  }
+
+  .menu-icon::before {
+    @apply -top-2;
+  }
+
+  .menu-icon::after {
+    @apply -bottom-2;
+  }
+}
+
+// Mobile menu styles
+@layer utilities {
+  @media (max-width: 768px) {
+    .mobile-menu-toggle {
+      @apply block;
+    }
+
+    .main-navigation ul {
+      @apply absolute top-full left-0 right-0 bg-white flex-col shadow-lg -translate-y-full opacity-0 invisible transition-all duration-300 z-50;
+    }
+
+    .main-navigation.mobile-open ul {
+      @apply translate-y-0 opacity-100 visible;
+    }
+
+    .main-navigation li {
+      @apply border-b border-gray-200;
+    }
+
+    .main-navigation a {
+      @apply block px-5 py-3;
+    }
+
+    .nav-links {
+      @apply flex-col gap-2.5;
+    }
+
+    .site-header .container {
+      @apply flex-col gap-5;
+    }
+  }
+}

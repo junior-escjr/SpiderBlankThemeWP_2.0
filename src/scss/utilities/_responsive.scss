@@ -1,0 +1,152 @@
+// Responsive utilities
+
+// Container utilities
+.container-sm {
+  @apply max-w-2xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.container-md {
+  @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.container-lg {
+  @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.container-xl {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.container-fluid {
+  @apply w-full px-4 sm:px-6 lg:px-8;
+}
+
+// Display utilities for responsive
+.display-none {
+  @apply hidden;
+}
+
+.display-block {
+  @apply block;
+}
+
+.display-inline {
+  @apply inline;
+}
+
+.display-inline-block {
+  @apply inline-block;
+}
+
+.display-flex {
+  @apply flex;
+}
+
+.display-grid {
+  @apply grid;
+}
+
+// Text alignment responsive
+.text-left-responsive {
+  @apply text-left sm:text-center lg:text-left;
+}
+
+.text-center-responsive {
+  @apply text-center sm:text-left lg:text-center;
+}
+
+.text-right-responsive {
+  @apply text-right sm:text-center lg:text-right;
+}
+
+// Flex utilities
+.flex-column-mobile {
+  @apply flex-col sm:flex-row;
+}
+
+.flex-row-mobile {
+  @apply flex-row sm:flex-col;
+}
+
+// Grid responsive
+.grid-cols-responsive {
+  @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+}
+
+// Spacing responsive
+.py-responsive {
+  @apply py-8 sm:py-12 lg:py-16 xl:py-20;
+}
+
+.px-responsive {
+  @apply px-4 sm:px-6 lg:px-8 xl:px-12;
+}
+
+.my-responsive {
+  @apply my-8 sm:my-12 lg:my-16 xl:my-20;
+}
+
+.mx-responsive {
+  @apply mx-4 sm:mx-6 lg:mx-8 xl:mx-12;
+}
+
+// Text size responsive
+.text-responsive-sm {
+  @apply text-sm sm:text-base lg:text-lg;
+}
+
+.text-responsive-md {
+  @apply text-base sm:text-lg lg:text-xl;
+}
+
+.text-responsive-lg {
+  @apply text-lg sm:text-xl lg:text-2xl;
+}
+
+.text-responsive-xl {
+  @apply text-xl sm:text-2xl lg:text-3xl;
+}
+
+.text-responsive-2xl {
+  @apply text-2xl sm:text-3xl lg:text-4xl;
+}
+
+// Button responsive
+.btn-responsive {
+  @apply px-4 py-2 sm:px-6 sm:py-3 lg:px-8 lg:py-4;
+}
+
+// Card responsive
+.card-responsive {
+  @apply p-4 sm:p-6 lg:p-8;
+}
+
+// Image responsive
+.img-responsive {
+  @apply w-full h-auto max-w-full;
+}
+
+// Hide/show responsive
+.hide-mobile {
+  @apply hidden sm:block;
+}
+
+.hide-tablet {
+  @apply block sm:hidden lg:block;
+}
+
+.hide-desktop {
+  @apply block lg:hidden;
+}
+
+.show-mobile {
+  @apply block sm:hidden;
+}
+
+.show-tablet {
+  @apply hidden sm:block lg:hidden;
+}
+
+.show-desktop {
+  @apply hidden lg:block;
+}

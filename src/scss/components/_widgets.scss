@@ -1,0 +1,210 @@
+// Widget components
+
+// Base widget styles
+.widget {
+  @apply bg-gray-50 p-5 rounded-lg mb-6;
+}
+
+.widget:last-child {
+  @apply mb-0;
+}
+
+.widget-title {
+  @apply text-xl font-bold mb-4 text-gray-900;
+}
+
+// Search widget
+.widget_search {
+  .search-form {
+    @apply flex;
+  }
+
+  .search-field {
+    @apply flex-1 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:border-blue-500;
+  }
+
+  .search-submit {
+    @apply px-4 py-2 bg-blue-600 text-white rounded-r-md hover:bg-blue-700 transition-colors duration-300;
+  }
+}
+
+// Recent posts widget
+.widget_recent_entries {
+  ul {
+    @apply space-y-3;
+  }
+
+  li {
+    @apply border-b border-gray-200 pb-3 last:border-b-0 last:pb-0;
+  }
+
+  a {
+    @apply text-gray-700 hover:text-blue-600 transition-colors duration-300;
+  }
+
+  .post-date {
+    @apply text-sm text-gray-500 mt-1;
+  }
+}
+
+// Categories widget
+.widget_categories {
+  ul {
+    @apply space-y-2;
+  }
+
+  li {
+    @apply flex items-center justify-between;
+  }
+
+  a {
+    @apply text-gray-700 hover:text-blue-600 transition-colors duration-300;
+  }
+
+  .count {
+    @apply text-sm text-gray-500 bg-gray-200 px-2 py-1 rounded-full;
+  }
+}
+
+// Archive widget
+.widget_archive {
+  ul {
+    @apply space-y-2;
+  }
+
+  li {
+    @apply text-gray-700;
+  }
+
+  a {
+    @apply hover:text-blue-600 transition-colors duration-300;
+  }
+}
+
+// Tag cloud widget
+.widget_tag_cloud {
+  .tagcloud {
+    @apply flex flex-wrap gap-2;
+  }
+
+  a {
+    @apply inline-block bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full hover:bg-blue-600 hover:text-white transition-colors duration-300;
+  }
+}
+
+// Recent comments widget
+.widget_recent_comments {
+  ul {
+    @apply space-y-3;
+  }
+
+  li {
+    @apply text-sm text-gray-600;
+  }
+
+  a {
+    @apply text-gray-700 hover:text-blue-600 transition-colors duration-300;
+  }
+
+  .comment-author-link {
+    @apply font-medium;
+  }
+}
+
+// Calendar widget
+.widget_calendar {
+  table {
+    @apply w-full;
+  }
+
+  caption {
+    @apply text-lg font-bold mb-4;
+  }
+
+  th {
+    @apply text-center font-semibold p-2;
+  }
+
+  td {
+    @apply text-center p-2;
+  }
+
+  a {
+    @apply text-blue-600 hover:text-blue-800;
+  }
+
+  #today {
+    @apply bg-blue-100 font-bold;
+  }
+}
+
+// Text widget
+.widget_text {
+  .textwidget {
+    @apply text-gray-600;
+  }
+
+  p:last-child {
+    @apply mb-0;
+  }
+}
+
+// Meta widget
+.widget_meta {
+  ul {
+    @apply space-y-2;
+  }
+
+  a {
+    @apply text-gray-700 hover:text-blue-600 transition-colors duration-300;
+  }
+}
+
+// RSS widget
+.widget_rss {
+  ul {
+    @apply space-y-4;
+  }
+
+  li {
+    @apply border-b border-gray-200 pb-4 last:border-b-0 last:pb-0;
+  }
+
+  a {
+    @apply text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors duration-300;
+  }
+
+  .rss-date {
+    @apply text-sm text-gray-500 mt-1;
+  }
+
+  .rssSummary {
+    @apply text-sm text-gray-600 mt-2;
+  }
+}
+
+// Newsletter widget
+.widget_newsletter {
+  .newsletter-form {
+    @apply space-y-4;
+  }
+
+  .newsletter-email {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500;
+  }
+
+  .newsletter-submit {
+    @apply w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-300;
+  }
+}
+
+// Social media widget
+.widget_social {
+  .social-links {
+    @apply flex space-x-4;
+  }
+
+  .social-link {
+    @apply inline-block w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:bg-blue-600 hover:text-white transition-colors duration-300;
+  }
+}
