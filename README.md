@@ -1,0 +1,1 @@
+# SpiderBlankThemeWP_2.0
