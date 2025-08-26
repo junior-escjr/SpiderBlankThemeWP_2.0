@@ -1,4 +1,4 @@
-// Navigation module
+// Navigation module - jQuery version
 
 export default class Navigation {
   constructor() {
@@ -13,110 +13,100 @@ export default class Navigation {
   }
 
   setupMobileMenu() {
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    const mobileMenu = document.querySelector('.main-navigation ul');
+    const $mobileToggle = $('.mobile-menu-toggle');
+    const $mainNavigation = $('.main-navigation');
 
-    if (mobileToggle && mobileMenu) {
-      mobileToggle.addEventListener('click', () => {
-        mobileMenu.classList.toggle('mobile-open');
-        mobileToggle.setAttribute('aria-expanded',
-          mobileToggle.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
-        );
+    if ($mobileToggle.length && $mainNavigation.length) {
+      $mobileToggle.on('click', function() {
+        $mainNavigation.toggleClass('mobile-open');
+        const isExpanded = $mobileToggle.attr('aria-expanded') === 'true';
+        $mobileToggle.attr('aria-expanded', !isExpanded);
       });
 
       // Close menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!mobileMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
-          mobileMenu.classList.remove('mobile-open');
-          mobileToggle.setAttribute('aria-expanded', 'false');
+      $(document).on('click', function(e) {
+        if (!$mainNavigation.is(e.target) && $mainNavigation.has(e.target).length === 0 && 
+            !$mobileToggle.is(e.target) && $mobileToggle.has(e.target).length === 0) {
+          $mainNavigation.removeClass('mobile-open');
+          $mobileToggle.attr('aria-expanded', 'false');
         }
       });
 
       // Close menu on escape key
-      document.addEventListener('keydown', (e) => {
+      $(document).on('keydown', function(e) {
         if (e.key === 'Escape') {
-          mobileMenu.classList.remove('mobile-open');
-          mobileToggle.setAttribute('aria-expanded', 'false');
+          $mainNavigation.removeClass('mobile-open');
+          $mobileToggle.attr('aria-expanded', 'false');
         }
       });
     }
   }
 
   setupDropdownMenus() {
-    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    const $dropdownToggles = $('.dropdown-toggle');
 
-    dropdownToggles.forEach(toggle => {
-      toggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        const dropdown = toggle.closest('.dropdown');
-        const menu = dropdown.querySelector('.dropdown-menu');
+    $dropdownToggles.on('click', function(e) {
+      e.preventDefault();
+      const $dropdown = $(this).closest('.dropdown');
+      const $menu = $dropdown.find('.dropdown-menu');
 
-        // Close other dropdowns
-        document.querySelectorAll('.dropdown-menu.show').forEach(otherMenu => {
-          if (otherMenu !== menu) {
-            otherMenu.classList.remove('show');
-          }
-        });
+      // Close other dropdowns
+      $('.dropdown-menu.show').not($menu).removeClass('show');
 
-        // Toggle current dropdown
-        menu.classList.toggle('show');
-      });
+      // Toggle current dropdown
+      $menu.toggleClass('show');
     });
 
     // Close dropdowns when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.dropdown')) {
-        document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
-          menu.classList.remove('show');
-        });
+    $(document).on('click', function(e) {
+      if (!$(e.target).closest('.dropdown').length) {
+        $('.dropdown-menu.show').removeClass('show');
       }
     });
   }
 
   setupStickyNavigation() {
-    const header = document.querySelector('.site-header');
+    const $header = $('.site-header');
     const scrollThreshold = 100;
 
-    if (header) {
-      const handleScroll = () => {
-        if (window.pageYOffset > scrollThreshold) {
-          header.classList.add('sticky-nav');
+    if ($header.length) {
+      const handleScroll = function() {
+        if ($(window).scrollTop() > scrollThreshold) {
+          $header.addClass('sticky-nav');
         } else {
-          header.classList.remove('sticky-nav');
+          $header.removeClass('sticky-nav');
         }
       };
 
-      window.addEventListener('scroll', handleScroll);
+      $(window).on('scroll', handleScroll);
       handleScroll(); // Initialize
     }
   }
 
   setupScrollSpy() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.main-navigation a[href^="#"]');
+    const $sections = $('section[id]');
+    const $navLinks = $('.main-navigation a[href^="#"]');
 
-    if (sections.length && navLinks.length) {
+    if ($sections.length && $navLinks.length) {
       const observerOptions = {
         root: null,
         rootMargin: '-50% 0px',
         threshold: 0
       };
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
           if (entry.isIntersecting) {
             const currentId = entry.target.getAttribute('id');
-            navLinks.forEach(link => {
-              link.classList.remove('active');
-              if (link.getAttribute('href') === `#${currentId}`) {
-                link.classList.add('active');
-              }
-            });
+            $navLinks.removeClass('active');
+            $navLinks.filter('[href="#' + currentId + '"]').addClass('active');
           }
         });
       }, observerOptions);
 
-      sections.forEach(section => observer.observe(section));
+      $sections.each(function() {
+        observer.observe(this);
+      });
     }
   }
 }

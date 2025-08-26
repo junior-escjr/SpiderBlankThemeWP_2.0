@@ -1,4 +1,4 @@
-// Scroll reveal module
+// Scroll reveal module - jQuery version
 
 export default class ScrollReveal {
   constructor() {
@@ -17,51 +17,53 @@ export default class ScrollReveal {
       threshold: 0.1
     };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
+          $(entry.target).addClass('revealed');
           observer.unobserve(entry.target);
         }
       });
     }, options);
 
     // Observe elements with reveal classes
-    const revealElements = document.querySelectorAll(
+    const $revealElements = $(
       '.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-up, .scroll-reveal-down'
     );
 
-    revealElements.forEach(element => observer.observe(element));
+    $revealElements.each(function() {
+      observer.observe(this);
+    });
   }
 
   setupParallaxEffects() {
-    const parallaxElements = document.querySelectorAll('[data-parallax]');
+    const $parallaxElements = $('[data-parallax]');
 
-    if (parallaxElements.length) {
-      const handleScroll = () => {
-        const scrolled = window.pageYOffset;
+    if ($parallaxElements.length) {
+      const handleScroll = function() {
+        const scrolled = $(window).scrollTop();
 
-        parallaxElements.forEach(element => {
-          const speed = element.getAttribute('data-parallax') || 0.5;
+        $parallaxElements.each(function() {
+          const speed = $(this).attr('data-parallax') || 0.5;
           const yPos = -(scrolled * speed);
-          element.style.transform = `translateY(${yPos}px)`;
+          $(this).css('transform', 'translateY(' + yPos + 'px)');
         });
       };
 
-      window.addEventListener('scroll', handleScroll);
+      $(window).on('scroll', handleScroll);
       handleScroll(); // Initialize
     }
   }
 
   // Static method to add reveal animation to element
   static reveal(element, animation = 'fadeInUp', delay = 0) {
-    setTimeout(() => {
-      element.classList.add('animate-' + animation);
+    setTimeout(function() {
+      $(element).addClass('animate-' + animation);
     }, delay);
   }
 
   // Static method to hide element
   static hide(element) {
-    element.classList.remove('revealed');
+    $(element).removeClass('revealed');
   }
 }

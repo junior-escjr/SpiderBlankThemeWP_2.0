@@ -110,9 +110,6 @@ add_action('widgets_init', 'spider_theme_widgets_init');
  * Enqueue scripts and styles.
  */
 function spider_theme_scripts() {
-    // Enqueue Tailwind CSS from CDN (v4.1.12 - latest stable)
-    wp_enqueue_style('tailwindcss', 'https://cdn.jsdelivr.net/npm/tailwindcss@4.1.12/dist/tailwind.min.css', array(), '4.1.12');
-
     // Check if we have compiled assets, fallback to source files
     $css_file = file_exists(get_template_directory() . '/static/css/app.min.css')
         ? '/static/css/app.min.css'
@@ -125,7 +122,7 @@ function spider_theme_scripts() {
         : '/src/js/app.js';
 
     // Enqueue main stylesheet
-    wp_enqueue_style('spider-theme-style', get_template_directory_uri() . $css_file, array('tailwindcss'), wp_get_theme()->get('Version'));
+    wp_enqueue_style('spider-theme-style', get_template_directory_uri() . $css_file, array(), wp_get_theme()->get('Version'));
 
     // Enqueue comment reply script on single posts
     if (is_singular() && comments_open() && get_option('thread_comments')) {
@@ -133,7 +130,7 @@ function spider_theme_scripts() {
     }
 
     // Enqueue main JavaScript
-    wp_enqueue_script('spider-theme-main', get_template_directory_uri() . $js_file, array(), wp_get_theme()->get('Version'), true);
+    wp_enqueue_script('spider-theme-main', get_template_directory_uri() . $js_file, array('jquery'), wp_get_theme()->get('Version'), true);
 
     // Localize script for AJAX and other dynamic data
     wp_localize_script('spider-theme-main', 'spider_theme_vars', array(

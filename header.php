@@ -28,18 +28,28 @@
                 <?php endif; ?>
             </div>
 
-            <nav id="site-navigation" class="main-navigation hidden md:block">
+            <nav id="site-navigation" class="main-navigation">
                 <?php
-                wp_nav_menu(array(
-                    'theme_location' => 'main-menu',
-                    'menu_id'        => 'primary-menu',
-                    'menu_class'     => 'flex space-x-8',
-                    'container'      => false,
-                ));
+                // Menu de teste para verificar se está funcionando
+                if (has_nav_menu('main-menu')) {
+                    wp_nav_menu(array(
+                        'theme_location' => 'main-menu',
+                        'menu_id'        => 'primary-menu',
+                        'menu_class'     => 'hidden md:flex md:space-x-8 list-none',
+                        'container'      => false,
+                    ));
+                } else {
+                    // Menu de fallback se não houver menu criado
+                    echo '<ul id="primary-menu" class="hidden md:flex md:space-x-8 list-none">';
+                    echo '<li class="border-b border-gray-200 md:border-b-0"><a href="' . home_url('/') . '" class="block px-5 py-3 text-gray-700 hover:text-blue-600 transition-colors duration-300">Início</a></li>';
+                    echo '<li class="border-b border-gray-200 md:border-b-0"><a href="' . home_url('/sobre') . '" class="block px-5 py-3 text-gray-700 hover:text-blue-600 transition-colors duration-300">Sobre</a></li>';
+                    echo '<li class="border-b border-gray-200 md:border-b-0"><a href="' . home_url('/contato') . '" class="block px-5 py-3 text-gray-700 hover:text-blue-600 transition-colors duration-300">Contato</a></li>';
+                    echo '</ul>';
+                }
                 ?>
             </nav>
 
-            <button class="mobile-menu-toggle md:hidden" aria-expanded="false" aria-label="Toggle mobile menu">
+            <button class="mobile-menu-toggle md:hidden bg-none border-none p-2.5 cursor-pointer" aria-expanded="false" aria-label="Toggle mobile menu">
                 <span class="menu-icon"></span>
             </button>
         </div>

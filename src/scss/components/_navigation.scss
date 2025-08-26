@@ -2,11 +2,10 @@
 
 // Main navigation
 .main-navigation {
-  @apply hidden md:block;
 }
 
 .main-navigation ul {
-  @apply flex space-x-8 list-none;
+  @apply hidden md:flex md:space-x-8 list-none;
 }
 
 .main-navigation a {
@@ -58,4 +57,25 @@
   }
 }
 
-// Mantenho apenas as classes utilizadas nos arquivos PHP
+// Mobile menu styles
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    @apply block;
+  }
+
+  .main-navigation ul {
+    @apply absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-b-lg flex-col shadow-xl -translate-y-full opacity-0 invisible transition-all duration-300 z-50;
+  }
+
+  .main-navigation.mobile-open ul {
+    @apply translate-y-0 opacity-100 visible flex;
+  }
+
+  .main-navigation li {
+    @apply border-b border-gray-200 last:border-b-0;
+  }
+
+  .main-navigation a {
+    @apply block px-5 py-4 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-all duration-200;
+  }
+}

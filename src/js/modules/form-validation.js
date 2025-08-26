@@ -1,4 +1,4 @@
-// Form validation module
+// Form validation module - jQuery version
 
 export default class FormValidation {
   constructor() {
@@ -12,48 +12,53 @@ export default class FormValidation {
   }
 
   setupFormValidation() {
-    const forms = document.querySelectorAll('form[data-validate]');
+    const $forms = $('form[data-validate]');
 
-    forms.forEach(form => {
-      form.addEventListener('submit', (e) => {
-        if (!this.validateForm(form)) {
+    $forms.each(function() {
+      const $form = $(this);
+      
+      $form.on('submit', function(e) {
+        if (!this.validateForm($form[0])) {
           e.preventDefault();
         }
-      });
+      }.bind(this));
 
       // Real-time validation
-      const inputs = form.querySelectorAll('input, textarea, select');
-      inputs.forEach(input => {
-        input.addEventListener('blur', () => {
-          this.validateField(input);
-        });
+      const $inputs = $form.find('input, textarea, select');
+      $inputs.each(function() {
+        const $input = $(this);
+        
+        $input.on('blur', function() {
+          this.validateField($input[0]);
+        }.bind(this));
 
-        input.addEventListener('input', () => {
-          if (input.classList.contains('error')) {
-            this.validateField(input);
+        $input.on('input', function() {
+          if ($input.hasClass('error')) {
+            this.validateField($input[0]);
           }
-        });
+        }.bind(this));
       });
-    });
+    }.bind(this));
   }
 
   validateForm(form) {
     let isValid = true;
-    const fields = form.querySelectorAll('[required], [data-validate]');
+    const $fields = $(form).find('[required], [data-validate]');
 
-    fields.forEach(field => {
-      if (!this.validateField(field)) {
+    $fields.each(function() {
+      if (!this.validateField(this)) {
         isValid = false;
       }
-    });
+    }.bind(this));
 
     return isValid;
   }
 
   validateField(field) {
-    const value = field.value.trim();
-    const fieldType = field.getAttribute('type') || field.tagName.toLowerCase();
-    const validationType = field.getAttribute('data-validate');
+    const $field = $(field);
+    const value = $field.val().trim();
+    const fieldType = $field.attr('type') || field.tagName.toLowerCase();
+    const validationType = $field.attr('data-validate');
     let isValid = true;
     let errorMessage = '';
 
@@ -61,7 +66,7 @@ export default class FormValidation {
     this.clearFieldError(field);
 
     // Required validation
-    if (field.hasAttribute('required') && !value) {
+    if ($field.attr('required') && !value) {
       isValid = false;
       errorMessage = 'Este campo é obrigatório';
     }
@@ -120,24 +125,25 @@ export default class FormValidation {
   }
 
   showFieldError(field, message) {
-    field.classList.add('error');
+    const $field = $(field);
+    $field.addClass('error');
 
-    let errorElement = field.nextElementSibling;
-    if (!errorElement || !errorElement.classList.contains('field-error')) {
-      errorElement = document.createElement('span');
-      errorElement.className = 'field-error text-red-600 text-sm mt-1';
-      field.parentNode.insertBefore(errorElement, field.nextSibling);
+    let $errorElement = $field.next('.field-error');
+    if (!$errorElement.length) {
+      $errorElement = $('<span>').addClass('field-error text-red-600 text-sm mt-1');
+      $field.after($errorElement);
     }
 
-    errorElement.textContent = message;
+    $errorElement.text(message);
   }
 
   clearFieldError(field) {
-    field.classList.remove('error');
+    const $field = $(field);
+    $field.removeClass('error');
 
-    const errorElement = field.nextElementSibling;
-    if (errorElement && errorElement.classList.contains('field-error')) {
-      errorElement.remove();
+    const $errorElement = $field.next('.field-error');
+    if ($errorElement.length) {
+      $errorElement.remove();
     }
   }
 
@@ -161,40 +167,40 @@ export default class FormValidation {
   }
 
   setupContactForm() {
-    const contactForm = document.querySelector('.contact-form');
+    const $contactForm = $('.contact-form');
 
-    if (contactForm) {
-      contactForm.addEventListener('submit', (e) => {
+    if ($contactForm.length) {
+      $contactForm.on('submit', function(e) {
         e.preventDefault();
 
-        if (this.validateForm(contactForm)) {
-          this.submitContactForm(contactForm);
+        if (this.validateForm($contactForm[0])) {
+          this.submitContactForm($contactForm[0]);
         }
-      });
+      }.bind(this));
     }
   }
 
   setupCommentForm() {
-    const commentForm = document.querySelector('.comment-form');
+    const $commentForm = $('.comment-form');
 
-    if (commentForm) {
-      commentForm.addEventListener('submit', (e) => {
+    if ($commentForm.length) {
+      $commentForm.on('submit', function(e) {
         e.preventDefault();
 
-        if (this.validateForm(commentForm)) {
-          this.submitCommentForm(commentForm);
+        if (this.validateForm($commentForm[0])) {
+          this.submitCommentForm($commentForm[0]);
         }
-      });
+      }.bind(this));
     }
   }
 
   async submitContactForm(form) {
-    const submitButton = form.querySelector('button[type="submit"]');
-    const originalText = submitButton.textContent;
+    const $form = $(form);
+    const $submitButton = $form.find('button[type="submit"]');
+    const originalText = $submitButton.text();
 
     // Show loading state
-    submitButton.disabled = true;
-    submitButton.textContent = 'Enviando...';
+    $submitButton.prop('disabled', true).text('Enviando...');
 
     try {
       // Simulate form submission (replace with actual API call)
@@ -204,65 +210,57 @@ export default class FormValidation {
       this.showFormMessage(form, 'Mensagem enviada com sucesso!', 'success');
 
       // Reset form
-      form.reset();
+      $form[0].reset();
 
     } catch (error) {
       // Show error message
       this.showFormMessage(form, 'Erro ao enviar mensagem. Tente novamente.', 'error');
     } finally {
       // Restore button
-      submitButton.disabled = false;
-      submitButton.textContent = originalText;
+      $submitButton.prop('disabled', false).text(originalText);
     }
   }
 
   async submitCommentForm(form) {
-    const submitButton = form.querySelector('button[type="submit"]');
-    const originalText = submitButton.textContent;
+    const $form = $(form);
+    const $submitButton = $form.find('button[type="submit"]');
+    const originalText = $submitButton.text();
 
-    submitButton.disabled = true;
-    submitButton.textContent = 'Enviando...';
+    $submitButton.prop('disabled', true).text('Enviando...');
 
     try {
       // Simulate comment submission
       await new Promise(resolve => setTimeout(resolve, 1500));
 
       this.showFormMessage(form, 'Comentário enviado com sucesso!', 'success');
-      form.reset();
+      $form[0].reset();
 
     } catch (error) {
       this.showFormMessage(form, 'Erro ao enviar comentário. Tente novamente.', 'error');
     } finally {
-      submitButton.disabled = false;
-      submitButton.textContent = originalText;
+      $submitButton.prop('disabled', false).text(originalText);
     }
   }
 
   showFormMessage(form, message, type) {
+    const $form = $(form);
+    
     // Remove existing messages
-    const existingMessage = form.querySelector('.form-message');
-    if (existingMessage) {
-      existingMessage.remove();
-    }
+    $form.siblings('.form-message').remove();
 
     // Create message element
-    const messageElement = document.createElement('div');
-    messageElement.className = `form-message p-4 rounded-md mb-4 ${
+    const $messageElement = $('<div>').addClass(`form-message p-4 rounded-md mb-4 ${
       type === 'success'
         ? 'bg-green-50 text-green-800 border border-green-200'
         : 'bg-red-50 text-red-800 border border-red-200'
-    }`;
-
-    messageElement.textContent = message;
+    }`).text(message);
 
     // Insert before form
-    form.parentNode.insertBefore(messageElement, form);
+    $form.before($messageElement);
 
     // Auto-remove after 5 seconds
-    setTimeout(() => {
-      if (messageElement.parentNode) {
-        messageElement.remove();
-      }
+    setTimeout(function() {
+      $messageElement.remove();
     }, 5000);
   }
 }
